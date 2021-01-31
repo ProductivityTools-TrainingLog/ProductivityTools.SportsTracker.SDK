@@ -2,7 +2,7 @@
 
 namespace ProductivityTools.SportsTracker.SDK
 {
-    public class Class1
+    public class SportsTracker
     {
     }
 }

@@ -1,7 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.0.2</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/pwujczyk/ProductivityTools.SportsTracker.SDK</PackageProjectUrl>
+    <PackageIcon>ProductivityTools_blue_85px_1.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/pwujczyk/ProductivityTools.SportsTracker.SDK</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>SportsTracker Sports Tracker</PackageTags>
   </PropertyGroup>
-
+  <ItemGroup>
+    <None Include="..\Images\Nuget\ProductivityTools_blue_85px_1.png">
+      <Pack>True</Pack>
+      <PackagePath>
+      </PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
