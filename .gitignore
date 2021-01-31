@@ -10,3 +10,4 @@ out/
 .vs
 src/ProductivityTools.PSFlickr.Configuration/ConfigurationLocal.xml
 tools/
+client-secrets.json
