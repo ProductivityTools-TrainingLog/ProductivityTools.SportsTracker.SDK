@@ -17,9 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="App.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\ProductivityTools.SportsTracker.SDK\ProductivityTools.SportsTracker.SDK.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="client-secrets.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
