@@ -1,12 +1,13 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProductivityTools.SportsTracker.SDK.Model;
 using System;
 using System.Configuration;
 
 namespace ProductivityTools.SportsTracker.SDK.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class ApiTests
     {
 
         IConfigurationRoot config;
@@ -43,6 +44,25 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
         {
             var list=this.SportsTracker.GetTrainingList();
             Assert.IsNotNull(list);
+        }
+
+        [TestMethod]
+        public void AddTraining()
+        {
+            Training training = new Training();
+            training.TrainingType = TrainingType.Fitness;
+            training.SharingFlags = 19;//public
+            training.Description = "Description";
+            training.Duration = TimeSpan.FromMinutes(20);
+            training.StartDate = DateTime.Parse("2021.01.01");
+            training.Distance = 0;
+
+            //string s = @"c:\Users\pwujczyk\Desktop\Pamela.jpg";
+            //byte[] bytes = File.ReadAllBytes(s);
+
+
+            var r=this.SportsTracker.AddTraining(training);
+            //Assert.IsNotNull(list);
         }
     }
 }

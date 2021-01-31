@@ -91,9 +91,10 @@ namespace ProductivityTools.SportsTracker.SDK
             return trainings;
         }
 
-        public void AddTraining(Training training)
+        public string AddTraining(Training training)
         {
-            AddTraining(training, null, null);
+            string r=AddTraining(training, null, null);
+            return r;
         }
 
         public void AddTraining(Training training, byte[] image)
@@ -101,7 +102,7 @@ namespace ProductivityTools.SportsTracker.SDK
             AddTraining(training, null, image);
         }
 
-        public void AddTraining(Training training, byte[] gpxFile, byte[] image)
+        public string AddTraining(Training training, byte[] gpxFile, byte[] image)
         {
             var addTraining = new ProductivityTools.SportsTracker.SDK.DTO.ImportTraining.Training();
             addTraining.activityId = (int)training.TrainingType;
@@ -129,6 +130,7 @@ namespace ProductivityTools.SportsTracker.SDK
 
                 ImportFile(GetUri($"workouts/{trainingId}/image/web"), "image", image);
             }
+            return result;
         }
 
         public string ImportGpxFile(byte[] content)
