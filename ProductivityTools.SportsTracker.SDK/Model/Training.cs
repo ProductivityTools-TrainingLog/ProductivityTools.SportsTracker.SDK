@@ -52,6 +52,8 @@ namespace ProductivityTools.SportsTracker.SDK.Model
             this.StartDate = payload.StartDate();
             this.Distance = Math.Round(payload.totalDistance / 1000, 2);
             this.TrainingType = (TrainingType)payload.activityId;
+            this.Description = payload.description;
+            this.Duration = TimeSpan.FromSeconds(payload.totalTime);
         }
     }
 }

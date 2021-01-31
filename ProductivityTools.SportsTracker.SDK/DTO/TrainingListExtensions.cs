@@ -12,7 +12,7 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
         {
             DateTimeOffset dateTimeOffset2 = DateTimeOffset.FromUnixTimeMilliseconds(that.startTime);
 
-            return dateTimeOffset2.DateTime;
+            return dateTimeOffset2.LocalDateTime;
         }
     }
 }

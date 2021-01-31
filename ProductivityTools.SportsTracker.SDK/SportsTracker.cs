@@ -97,9 +97,10 @@ namespace ProductivityTools.SportsTracker.SDK
             return r;
         }
 
-        public void AddTraining(Training training, byte[] image)
+        public string AddTraining(Training training, byte[] image)
         {
-            AddTraining(training, null, image);
+            string r = AddTraining(training, null, image);
+            return r;
         }
 
         public string AddTraining(Training training, byte[] gpxFile, byte[] image)

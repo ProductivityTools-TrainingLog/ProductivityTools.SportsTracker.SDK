@@ -4,6 +4,7 @@ using System.Text;
 
 namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
 {
+
     public class Rootobject
     {
         public object error { get; set; }
@@ -20,6 +21,7 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
     public class Payload
     {
         public int activityId { get; set; }
+        public string description { get; set; }
         public long startTime { get; set; }
         public float totalTime { get; set; }
         public float totalDistance { get; set; }
@@ -32,22 +34,19 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
         public int recoveryTime { get; set; }
         public int cumulativeRecoveryTime { get; set; }
         public Rankings rankings { get; set; }
-        public Extension[] extensions { get; set; }
-        public string[] extensionTypes { get; set; }
-        public float minAltitude { get; set; }
-        public float maxAltitude { get; set; }
         public bool isEdited { get; set; }
         public bool isManuallyAdded { get; set; }
+        public Tss tss { get; set; }
         public string workoutKey { get; set; }
-        public float avgSpeed { get; set; }
-        public float avgPace { get; set; }
-        public int commentCount { get; set; }
-        public int viewCount { get; set; }
-        public int timeOffsetInMinutes { get; set; }
-        public Cadence cadence { get; set; }
         public int energyConsumption { get; set; }
-        public Hrdata hrdata { get; set; }
+        public int commentCount { get; set; }
         public int pictureCount { get; set; }
+        public int viewCount { get; set; }
+        public float avgPace { get; set; }
+        public float avgSpeed { get; set; }
+        public Hrdata hrdata { get; set; }
+        public Cadence cadence { get; set; }
+        public int timeOffsetInMinutes { get; set; }
         public Externalblobsourceraw externalBlobSourceRaw { get; set; }
         public Headerblobsourceraw headerBlobSourceRaw { get; set; }
     }
@@ -81,10 +80,13 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
         public int originalNumberOfWorkouts { get; set; }
     }
 
-    public class Cadence
+    public class Tss
     {
-        public int max { get; set; }
-        public int avg { get; set; }
+        public string calculationMethod { get; set; }
+        public float trainingStressScore { get; set; }
+        public object intensityFactor { get; set; }
+        public object normalizedPower { get; set; }
+        public object averageGradeAdjustedPace { get; set; }
     }
 
     public class Hrdata
@@ -95,6 +97,12 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
         public int max { get; set; }
         public int avg { get; set; }
         public int hrmax { get; set; }
+    }
+
+    public class Cadence
+    {
+        public int max { get; set; }
+        public int avg { get; set; }
     }
 
     public class Externalblobsourceraw
@@ -111,12 +119,4 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
         public string type { get; set; }
     }
 
-    public class Extension
-    {
-        public string type { get; set; }
-        public string weatherIcon { get; set; }
-        public float temperature { get; set; }
-        public float windSpeed { get; set; }
-        public float windDirection { get; set; }
-    }
 }
