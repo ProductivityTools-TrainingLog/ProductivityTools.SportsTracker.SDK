@@ -21,16 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Blob\Track.gpx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Blob\Pamela.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="client-secrets.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Blob\" />
   </ItemGroup>
 
 </Project>

@@ -93,17 +93,23 @@ namespace ProductivityTools.SportsTracker.SDK
 
         public string AddTraining(Training training)
         {
-            string r=AddTraining(training, null, null);
+            string r = AddTraining(training, null, null);
             return r;
         }
 
-        public string AddTraining(Training training, byte[] image)
+        public string AddTraining(Training training, byte[] gpxFile)
+        {
+            string r = AddTraining(training, gpxFile, null);
+            return r;
+        }
+
+        public string AddTraining(Training training, List<byte[]> image)
         {
             string r = AddTraining(training, null, image);
             return r;
         }
 
-        public string AddTraining(Training training, byte[] gpxFile, byte[] image)
+        public string AddTraining(Training training, byte[] gpxFile, List<byte[]> image)
         {
             var addTraining = new ProductivityTools.SportsTracker.SDK.DTO.ImportTraining.Training();
             addTraining.activityId = (int)training.TrainingType;
@@ -129,7 +135,10 @@ namespace ProductivityTools.SportsTracker.SDK
                 var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.SDK.DTO.ImportGpx.Rootobject>(result);
                 var trainingId = jobject.payload.workoutKey;
 
-                ImportFile(GetUri($"workouts/{trainingId}/image/web"), "image", image);
+                foreach (var i in image)
+                {
+                    ImportFile(GetUri($"workouts/{trainingId}/image/web"), "image", i);
+                }
             }
             return result;
         }
@@ -180,6 +189,11 @@ namespace ProductivityTools.SportsTracker.SDK
             var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
 
             var result = this.Client.PostAsync(GetUri("workout").ToString(), content).Result.Content.ReadAsStringAsync().Result;
+        }
+
+        public void DeleteTraining(string workoutKey)
+        {
+            this.Client.DeleteAsync(GetUri($"workouts/{workoutKey}/delete"));
         }
 
         public static double ConvertToUnixTimestamp(DateTime date)

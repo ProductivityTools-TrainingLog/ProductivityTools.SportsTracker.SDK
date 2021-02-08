@@ -15,6 +15,7 @@ namespace ProductivityTools.SportsTracker.SDK.Model
         public string Description { get; set; }
         public int EnergyConsumption { get; set; }
         public int SharingFlags { get; set; }
+        public string WorkoutKey { get; set; }
 
         public long StartTime
         {
@@ -54,6 +55,7 @@ namespace ProductivityTools.SportsTracker.SDK.Model
             this.TrainingType = (TrainingType)payload.activityId;
             this.Description = payload.description;
             this.Duration = TimeSpan.FromSeconds(payload.totalTime);
+            this.WorkoutKey = payload.workoutKey;
         }
     }
 }

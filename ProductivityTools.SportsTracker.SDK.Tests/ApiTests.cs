@@ -67,7 +67,6 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             Assert.AreEqual(element.StartDate, DateTime.Parse("2021.01.01"));
             Assert.AreEqual(element.Distance, 10);
             Assert.AreEqual(element.TrainingType, TrainingType.Fitness);
-
         }
 
         [TestMethod]
@@ -84,10 +83,51 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             string s = @"Blob\Pamela.jpg";
             byte[] bytes = File.ReadAllBytes(s);
 
-
-            var r = this.SportsTracker.AddTraining(training, bytes);
+            var r = this.SportsTracker.AddTraining(training, new System.Collections.Generic.List<byte[]> { bytes });
             var list = this.SportsTracker.GetTrainingList();
-            //Assert.IsNotNull(list);
+        }
+
+
+        [TestMethod]
+        public void AddTrainingWithGpxTrack()
+        {
+            Training training = new Training();
+            training.TrainingType = TrainingType.CrossCountrySkiing;
+            training.SharingFlags = 19;//public
+            training.Description = "Description";
+            training.Duration = TimeSpan.FromMinutes(20);
+            training.StartDate = DateTime.Parse("2021.01.03");
+            training.Distance = 0;
+
+            string s = @"Blob\Track.gpx";
+            byte[] trainingTrack = File.ReadAllBytes(s);
+
+
+            var r = this.SportsTracker.AddTraining(training, trainingTrack);
+            var list = this.SportsTracker.GetTrainingList();
+        }
+
+        [TestMethod]
+        public void DeleteTraining()
+        {
+            var list = this.SportsTracker.GetTrainingList();
+            var count1 = list.Count;
+            this.SportsTracker.DeleteTraining(list[0].WorkoutKey);
+            list = this.SportsTracker.GetTrainingList();
+            var count2 = list.Count;
+            Assert.AreEqual(count1, count2 + 1);
+        }
+
+        [TestMethod]
+        public void DeleteAllTrainings()
+        {
+            var list = this.SportsTracker.GetTrainingList();
+            foreach (var training in list)
+            {
+                this.SportsTracker.DeleteTraining(training.WorkoutKey);
+            }
+            list = this.SportsTracker.GetTrainingList();
+            Assert.AreEqual(0, list.Count);
         }
     }
 }
