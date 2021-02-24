@@ -111,6 +111,33 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             Assert.AreEqual(serverTraining.Duration, TimeSpan.FromMinutes(20));
         }
 
+
+        [TestMethod]
+        public void AddTrainingWithGpxTrackAndImage()
+        {
+            Training training = new Training();
+            training.TrainingType = TrainingType.Areobics;
+            training.SharingFlags = 19;//public
+            training.Description = "Description";
+            training.Duration = TimeSpan.FromMinutes(20);
+            training.StartDate = DateTime.Parse("2021.01.03");
+            training.Distance = 10;
+
+            string s = @"Blob\Track.gpx";
+            byte[] trainingTrack = File.ReadAllBytes(s);
+
+            string image = @"Blob\Pamela.jpg";
+            byte[] bytes = File.ReadAllBytes(image);
+
+            var r = this.SportsTracker.AddTraining(training, trainingTrack, new System.Collections.Generic.List<byte[]> { bytes });
+            var list = this.SportsTracker.GetTrainingList();
+            var serverTraining = list.First(x => x.WorkoutKey == r);
+            Assert.AreEqual(serverTraining.Description, "Description");
+            Assert.AreEqual(serverTraining.StartDate, DateTime.Parse("2021.01.03"));
+            Assert.AreEqual(serverTraining.Distance, 10);
+            Assert.AreEqual(serverTraining.Duration, TimeSpan.FromMinutes(20));
+        }
+
         [TestMethod]
         public void DeleteTraining()
         {

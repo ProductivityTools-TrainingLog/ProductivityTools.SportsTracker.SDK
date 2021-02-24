@@ -139,13 +139,14 @@ namespace ProductivityTools.SportsTracker.SDK
                 var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
                 var stringresult = this.Client.PostAsync(GetUri("workout"), content).Result.Content.ReadAsStringAsync().Result;
                 var o = JObject.Parse(stringresult);
-                result = o["metadata"]["ts"].ToString();
+                var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.SDK.DTO.ImportGpx.Rootobject>(result);
+                result = jobject.payload.workoutKey; 
+                //result = o["metadata"]["ts"].ToString();
             }
 
             if (image != null)
             {
-                var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.SDK.DTO.ImportGpx.Rootobject>(result);
-                var trainingId = jobject.payload.workoutKey;
+                var trainingId = result;
 
                 foreach (var i in image)
                 {
