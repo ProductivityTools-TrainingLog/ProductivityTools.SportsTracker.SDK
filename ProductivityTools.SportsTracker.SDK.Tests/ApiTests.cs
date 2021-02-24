@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProductivityTools.MasterConfiguration;
 using ProductivityTools.SportsTracker.SDK.Model;
 using System;
 using System.Configuration;
@@ -20,7 +21,8 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
                 if (config == null)
                 {
                     config = new ConfigurationBuilder()
-                               .AddJsonFile("client-secrets.json")
+                               //.AddJsonFile("client-secrets.json")
+                               .AddMasterConfiguration(force:true)
                                .Build();
                 }
                 return config;
