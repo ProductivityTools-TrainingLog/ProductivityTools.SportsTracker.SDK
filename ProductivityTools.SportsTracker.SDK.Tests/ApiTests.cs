@@ -94,16 +94,21 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             Training training = new Training();
             training.TrainingType = TrainingType.Areobics;
             training.SharingFlags = 19;//public
-            //training.Description = "Description";
-            //training.Duration = TimeSpan.FromMinutes(20);
+            training.Description = "Description";
+            training.Duration = TimeSpan.FromMinutes(20);
             training.StartDate = DateTime.Parse("2021.01.03");
-            //training.Distance = 0;
+            training.Distance = 10;
 
             string s = @"Blob\Track.gpx";
             byte[] trainingTrack = File.ReadAllBytes(s);
 
             var r = this.SportsTracker.AddTraining(training, trainingTrack);
             var list = this.SportsTracker.GetTrainingList();
+            var serverTraining = list.First(x => x.WorkoutKey == r);
+            Assert.AreEqual(serverTraining.Description, "Description");
+            Assert.AreEqual(serverTraining.StartDate, DateTime.Parse("2021.01.03"));
+            Assert.AreEqual(serverTraining.Distance, 10);
+            Assert.AreEqual(serverTraining.Duration, TimeSpan.FromMinutes(20));
         }
 
         [TestMethod]
