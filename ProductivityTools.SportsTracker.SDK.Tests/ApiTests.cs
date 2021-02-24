@@ -96,12 +96,11 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             training.SharingFlags = 19;//public
             //training.Description = "Description";
             //training.Duration = TimeSpan.FromMinutes(20);
-            //training.StartDate = DateTime.Parse("2021.01.03");
+            training.StartDate = DateTime.Parse("2021.01.03");
             //training.Distance = 0;
 
             string s = @"Blob\Track.gpx";
             byte[] trainingTrack = File.ReadAllBytes(s);
-
 
             var r = this.SportsTracker.AddTraining(training, trainingTrack);
             var list = this.SportsTracker.GetTrainingList();
@@ -126,6 +125,7 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             {
                 this.SportsTracker.DeleteTraining(training.WorkoutKey);
             }
+            list = this.SportsTracker.GetTrainingList();
             list = this.SportsTracker.GetTrainingList();
             Assert.AreEqual(0, list.Count);
         }

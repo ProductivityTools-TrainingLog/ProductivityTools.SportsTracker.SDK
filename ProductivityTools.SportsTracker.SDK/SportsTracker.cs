@@ -111,6 +111,8 @@ namespace ProductivityTools.SportsTracker.SDK
 
         public string AddTraining(Training training, byte[] gpxFile, List<byte[]> image)
         {
+            string result = null;
+
             var addTraining = new ProductivityTools.SportsTracker.SDK.DTO.ImportTraining.Training();
             addTraining.activityId = (int)training.TrainingType;
             addTraining.description = training.Description;
@@ -124,11 +126,16 @@ namespace ProductivityTools.SportsTracker.SDK
             {
                 string workoutKey = ImportGpxFile(gpxFile);
                 addTraining.workoutKey = workoutKey;
+                var dataAsString = JsonConvert.SerializeObject(new List<DTO.ImportTraining.Training> { addTraining });
+                var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
+                result = this.Client.PostAsync(GetUri("workouts/header"), content).Result.Content.ReadAsStringAsync().Result;
             }
-
-            var dataAsString = JsonConvert.SerializeObject(addTraining);
-            var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
-            var result = this.Client.PostAsync(GetUri("workout"), content).Result.Content.ReadAsStringAsync().Result;
+            else
+            {
+                var dataAsString = JsonConvert.SerializeObject(addTraining);
+                var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
+                result = this.Client.PostAsync(GetUri("workout"), content).Result.Content.ReadAsStringAsync().Result;
+            }
 
             if (image != null)
             {
