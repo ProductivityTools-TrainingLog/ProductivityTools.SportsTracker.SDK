@@ -6,6 +6,7 @@ using System;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 namespace ProductivityTools.SportsTracker.SDK.Tests
 {
@@ -143,6 +144,7 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
         [TestMethod]
         public void DeleteTraining()
         {
+            AddTraining();
             var list = this.SportsTracker.GetTrainingList();
             var count1 = list.Count;
             this.SportsTracker.DeleteTraining(list[0].WorkoutKey);
@@ -159,7 +161,7 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             {
                 this.SportsTracker.DeleteTraining(training.WorkoutKey);
             }
-            list = this.SportsTracker.GetTrainingList();
+            Thread.Sleep(1000);
             list = this.SportsTracker.GetTrainingList();
             Assert.AreEqual(0, list.Count);
         }

@@ -120,12 +120,13 @@ namespace ProductivityTools.SportsTracker.SDK
             addTraining.sharingFlags = training.SharingFlags;
             addTraining.startTime = training.StartTime;
             addTraining.totalDistance = training.TotalDistance;
-            addTraining.totalTime = training.TotalTime;
+            
 
             if (gpxFile != null)
             {
                 string workoutKey = ImportGpxFile(gpxFile);
                 addTraining.workoutKey = workoutKey;
+                addTraining.totalTime = training.TotalTime;
                 var dataAsString = JsonConvert.SerializeObject(new List<DTO.ImportTraining.Training> { addTraining });
                 var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
                 var stringresult = this.Client.PostAsync(GetUri("workouts/header"), content).Result.Content.ReadAsStringAsync().Result;
@@ -135,11 +136,12 @@ namespace ProductivityTools.SportsTracker.SDK
             }
             else
             {
+                addTraining.duration = training.TotalTime;
                 var dataAsString = JsonConvert.SerializeObject(addTraining);
                 var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
                 var stringresult = this.Client.PostAsync(GetUri("workout"), content).Result.Content.ReadAsStringAsync().Result;
                 var o = JObject.Parse(stringresult);
-                var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.SDK.DTO.ImportGpx.Rootobject>(result);
+                var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.SDK.DTO.ImportGpx.Rootobject>(stringresult);
                 result = jobject.payload.workoutKey; 
                 //result = o["metadata"]["ts"].ToString();
             }

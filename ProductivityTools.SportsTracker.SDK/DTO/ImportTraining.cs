@@ -12,8 +12,8 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.ImportTraining
         public int sharingFlags { get; set; }
         public long startTime { get; set; }
         public int totalDistance { get; set; }
-        public int totalTime { get; set; }
-       // public int duration { get; set; } in adding training with gps track we use total time
+        public int totalTime { get; set; }//used in edit
+        public int duration { get; set; } //used in adding
         public string workoutKey { get; set; }
     }
 }
