@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProductivityTools.SportsTracker.SDK.DTO.NewTraining
 {
-    public class Rootobject
+    internal class Rootobject
     {
         public int activityId { get; set; }
         public double startTime { get; set; }

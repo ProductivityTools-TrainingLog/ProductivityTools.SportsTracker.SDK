@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProductivityTools.SportsTracker.SDK.Model
 {
-    enum SharintType
+    enum SharingType
     {
         Public = 19,
     }

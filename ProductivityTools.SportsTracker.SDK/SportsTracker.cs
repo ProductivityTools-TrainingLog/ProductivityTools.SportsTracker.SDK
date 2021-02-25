@@ -196,7 +196,7 @@ namespace ProductivityTools.SportsTracker.SDK
             newTraining.description = description;
             newTraining.duration = duration;
             newTraining.energy = 0;
-            newTraining.sharingFlags = (int)SharintType.Public;
+            newTraining.sharingFlags = (int)SharingType.Public;
             newTraining.timeZoneOffset = 0;
             newTraining.totalDistance = 0;
             newTraining.startTime = ConvertToUnixTimestamp(startTime) * 1000;

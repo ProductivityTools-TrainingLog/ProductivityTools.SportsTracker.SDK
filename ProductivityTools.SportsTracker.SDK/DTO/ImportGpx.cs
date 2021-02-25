@@ -4,14 +4,14 @@ using System.Text;
 
 namespace ProductivityTools.SportsTracker.SDK.DTO.ImportGpx
 {
-    public class Rootobject
+    internal class Rootobject
     {
         public object error { get; set; }
         public Payload payload { get; set; }
         public Metadata metadata { get; set; }
     }
 
-    public class Payload
+    internal class Payload
     {
         public string username { get; set; }
         public int sharingFlags { get; set; }
@@ -61,42 +61,42 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.ImportGpx
         public string workoutKey { get; set; }
     }
 
-    public class Startposition
+    internal class Startposition
     {
         public float x { get; set; }
         public float y { get; set; }
     }
 
-    public class Stopposition
+    internal class Stopposition
     {
         public float x { get; set; }
         public float y { get; set; }
     }
 
-    public class Centerposition
+    internal class Centerposition
     {
         public float x { get; set; }
         public float y { get; set; }
     }
 
-    public class Rankings
+    internal class Rankings
     {
         public Totaltimeonrouteranking totalTimeOnRouteRanking { get; set; }
     }
 
-    public class Totaltimeonrouteranking
+    internal class Totaltimeonrouteranking
     {
         public int originalRanking { get; set; }
         public int originalNumberOfWorkouts { get; set; }
     }
 
-    public class Cadence
+    internal class Cadence
     {
         public int max { get; set; }
         public int avg { get; set; }
     }
 
-    public class Hrdata
+    internal class Hrdata
     {
         public int userMaxHR { get; set; }
         public int workoutMaxHR { get; set; }
@@ -106,7 +106,7 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.ImportGpx
         public int hrmax { get; set; }
     }
 
-    public class Metadata
+    internal class Metadata
     {
         public string INFO { get; set; }
     }

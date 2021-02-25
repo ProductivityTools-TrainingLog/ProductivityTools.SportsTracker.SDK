@@ -5,20 +5,20 @@ using System.Text;
 namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
 {
 
-    public class Rootobject
+    internal class Rootobject
     {
         public object error { get; set; }
         public Payload[] payload { get; set; }
         public Metadata metadata { get; set; }
     }
 
-    public class Metadata
+    internal class Metadata
     {
         public string workoutcount { get; set; }
         public string until { get; set; }
     }
 
-    public class Payload
+    internal class Payload
     {
         public int activityId { get; set; }
         public string description { get; set; }
@@ -51,36 +51,36 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
         public Headerblobsourceraw headerBlobSourceRaw { get; set; }
     }
 
-    public class Startposition
+    internal class Startposition
     {
         public float x { get; set; }
         public float y { get; set; }
     }
 
-    public class Stopposition
+    internal class Stopposition
     {
         public float x { get; set; }
         public float y { get; set; }
     }
 
-    public class Centerposition
+    internal class Centerposition
     {
         public float x { get; set; }
         public float y { get; set; }
     }
 
-    public class Rankings
+    internal class Rankings
     {
         public Totaltimeonrouteranking totalTimeOnRouteRanking { get; set; }
     }
 
-    public class Totaltimeonrouteranking
+    internal class Totaltimeonrouteranking
     {
         public int originalRanking { get; set; }
         public int originalNumberOfWorkouts { get; set; }
     }
 
-    public class Tss
+    internal class Tss
     {
         public string calculationMethod { get; set; }
         public float trainingStressScore { get; set; }
@@ -89,7 +89,7 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
         public object averageGradeAdjustedPace { get; set; }
     }
 
-    public class Hrdata
+    internal class Hrdata
     {
         public int userMaxHR { get; set; }
         public int workoutMaxHR { get; set; }
@@ -99,20 +99,20 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
         public int hrmax { get; set; }
     }
 
-    public class Cadence
+    internal class Cadence
     {
         public int max { get; set; }
         public int avg { get; set; }
     }
 
-    public class Externalblobsourceraw
+    internal class Externalblobsourceraw
     {
         public string path { get; set; }
         public int gen { get; set; }
         public string type { get; set; }
     }
 
-    public class Headerblobsourceraw
+    internal class Headerblobsourceraw
     {
         public string path { get; set; }
         public int gen { get; set; }

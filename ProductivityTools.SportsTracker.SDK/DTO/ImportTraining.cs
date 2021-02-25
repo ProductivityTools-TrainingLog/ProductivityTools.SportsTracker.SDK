@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProductivityTools.SportsTracker.SDK.DTO.ImportTraining
 {
-    public class Training
+    internal class Training
     {
         public int activityId { get; set; }
         public string description { get; set; }

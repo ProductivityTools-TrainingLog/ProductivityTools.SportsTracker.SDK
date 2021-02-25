@@ -48,7 +48,7 @@ namespace ProductivityTools.SportsTracker.SDK.Model
         { }
 
 
-        public Training(ProductivityTools.SportsTracker.SDK.DTO.TrainingList.Payload payload)
+        internal Training(ProductivityTools.SportsTracker.SDK.DTO.TrainingList.Payload payload)
         {
             this.StartDate = payload.StartDate();
             this.Distance = Math.Round(payload.totalDistance / 1000, 2);
