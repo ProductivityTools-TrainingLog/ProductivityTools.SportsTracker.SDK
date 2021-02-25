@@ -12,7 +12,7 @@
 
 # Sports Tracker SDK
  
-Library exposes methods which allow to manage trainings on the https://sports-tracker.com/ webiste.
+Library exposes methods which allow to manage trainings on the https://sports-tracker.com/ website.
 <!--more-->
 
  ```C#
@@ -23,7 +23,7 @@ Methods
 - AddTraining(Training training, byte[] gpxFile, List<byte[]> image)
 - AddTraining(TrainingType trainingType, string description, int duration, DateTime startTime)
 - ImportGpxFile(byte[] content)
--  DeleteTraining(string workoutKey)
+- DeleteTraining(string workoutKey)
 
 ```
 
