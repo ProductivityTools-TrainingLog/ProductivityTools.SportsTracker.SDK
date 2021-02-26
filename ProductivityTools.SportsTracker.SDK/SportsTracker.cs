@@ -12,6 +12,7 @@ namespace ProductivityTools.SportsTracker.SDK
     public class SportsTracker
     {
         string UserName, Password;
+        bool Logging;
         private string Address = "https://api.sports-tracker.com/apiserver/v1/";
 
         HttpClient client;
@@ -22,7 +23,14 @@ namespace ProductivityTools.SportsTracker.SDK
             {
                 if (client == null)
                 {
-                    client = new HttpClient(new LoggingHandler(new HttpClientHandler()));
+                    if (Logging)
+                    {
+                        client = new HttpClient(new LoggingHandler(new HttpClientHandler()));
+                    }
+                    else
+                    {
+                        client = new HttpClient();
+                    }
 
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -46,10 +54,17 @@ namespace ProductivityTools.SportsTracker.SDK
             }
         }
 
-        public SportsTracker(string username, string password)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username">User name to the Sports-Tracker page</param>
+        /// <param name="password">Password to the Sports-Tracker page</param>
+        /// <param name="logging">When set to true it will print all webrequest content to the console</param>
+        public SportsTracker(string username, string password, bool logging = false)
         {
             this.UserName = username;
             this.Password = password;
+            this.Logging = logging;
         }
 
         private Uri GetUri(string end)
@@ -120,7 +135,7 @@ namespace ProductivityTools.SportsTracker.SDK
             addTraining.sharingFlags = training.SharingFlags;
             addTraining.startTime = training.StartTime;
             addTraining.totalDistance = training.TotalDistance;
-            
+
 
             if (gpxFile != null)
             {
@@ -142,7 +157,7 @@ namespace ProductivityTools.SportsTracker.SDK
                 var stringresult = this.Client.PostAsync(GetUri("workout"), content).Result.Content.ReadAsStringAsync().Result;
                 var o = JObject.Parse(stringresult);
                 var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.SDK.DTO.ImportGpx.Rootobject>(stringresult);
-                result = jobject.payload.workoutKey; 
+                result = jobject.payload.workoutKey;
                 //result = o["metadata"]["ts"].ToString();
             }
 

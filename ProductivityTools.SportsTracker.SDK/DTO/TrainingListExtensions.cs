@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProductivityTools.SportsTracker.SDK.DTO.TrainingList
 {
-    public static class TrainingListExtensions
+    internal static class TrainingListExtensions
     {
         private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
