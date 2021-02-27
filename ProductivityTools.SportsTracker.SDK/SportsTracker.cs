@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ProductivityTools.SportsTracker.SDK.Exceptions;
 using ProductivityTools.SportsTracker.SDK.Model;
 using System;
 using System.Collections.Generic;
@@ -89,6 +90,14 @@ namespace ProductivityTools.SportsTracker.SDK
             HttpResponseMessage response = AnonymousClient.PostAsync(GetUri("login"), formContent).Result;
             var resultAsString = response.Content.ReadAsStringAsync().Result;
             JObject jobject = (JObject)JsonConvert.DeserializeObject(resultAsString);
+            if (jobject["error"] != null)
+            {
+                string code = jobject["error"]["code"].ToString();
+                if (code == "403")
+                {
+                    throw new ForbiddenException("403");
+                }
+            }
             string sessionKey = jobject["sessionkey"].ToString();
             return sessionKey;
         }

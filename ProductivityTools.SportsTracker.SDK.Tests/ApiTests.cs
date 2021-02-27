@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProductivityTools.MasterConfiguration;
+using ProductivityTools.SportsTracker.SDK.Exceptions;
 using ProductivityTools.SportsTracker.SDK.Model;
 using System;
 using System.Configuration;
@@ -42,6 +43,14 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
                 return sportsTracker;
             }
 
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ForbiddenException))]
+        public void WrongCredentials()
+        {
+            var app = new SportsTracker("wrong", "wrong");
+            app.GetTrainingList();
         }
 
         [TestMethod]
