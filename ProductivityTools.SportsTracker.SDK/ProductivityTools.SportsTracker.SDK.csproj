@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.0.14</Version>
+    <Version>0.0.15</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/pwujczyk/ProductivityTools.SportsTracker.SDK</PackageProjectUrl>
     <PackageIcon>ProductivityTools_blue_85px_1.png</PackageIcon>
@@ -9,6 +9,8 @@
     <RepositoryUrl>https://github.com/pwujczyk/ProductivityTools.SportsTracker.SDK</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>SportsTracker Sports Tracker</PackageTags>
+    <Authors>ProductivityTools</Authors>
+    <Description>Library exposes methods which allow to manage trainings on the https://sports-tracker.com/ website.</Description>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\Images\Nuget\ProductivityTools_blue_85px_1.png">
