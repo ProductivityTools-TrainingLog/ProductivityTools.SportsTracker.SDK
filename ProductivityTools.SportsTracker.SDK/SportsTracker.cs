@@ -95,7 +95,7 @@ namespace ProductivityTools.SportsTracker.SDK
                 string code = jobject["error"]["code"].ToString();
                 if (code == "403")
                 {
-                    throw new ForbiddenException("403");
+                    throw new ForbiddenException("403 - Wrong user name or password");
                 }
             }
             string sessionKey = jobject["sessionkey"].ToString();
