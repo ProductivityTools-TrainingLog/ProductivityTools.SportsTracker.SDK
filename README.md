@@ -25,6 +25,8 @@ Methods
 - ImportGpxFile(byte[] content)
 - DeleteTraining(string workoutKey)
 
+- List<Training> GetTrainingList()
+
 ```
 
 To use SportsTracker you need to create it with
