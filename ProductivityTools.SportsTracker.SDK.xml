@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProductivityTools.SportsTracker.SDK</name>
+    </assembly>
+    <members>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.StartDate">
+            <summary>
+            Date and time of the training
+            </summary>
+        </member>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.Distance">
+            <summary>
+            Distance of the training in kilometers
+            </summary>
+        </member>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.TrainingType">
+            <summary>
+            Training Type
+            </summary>
+        </member>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.Duration">
+            <summary>
+            Duration
+            </summary>
+        </member>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.EnergyConsumption">
+            <summary>
+            Calories
+            </summary>
+        </member>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.SharingFlags">
+            <summary>
+            Sharing flags, 19 is public
+            </summary>
+        </member>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.WorkoutKey">
+            <summary>
+            SportsTracker Training Key
+            </summary>
+        </member>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.StartTime">
+            <summary>
+            Readonly property which returnes start time in epoch time
+            </summary>
+        </member>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.TotalTime">
+            <summary>
+            Read only property which gives duration time in seconds
+            </summary>
+        </member>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.TotalDistance">
+            <summary>
+            Read only property which returns distance in meters
+            </summary>
+        </member>
+        <member name="M:ProductivityTools.SportsTracker.SDK.SportsTracker.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="username">User name to the Sports-Tracker page</param>
+            <param name="password">Password to the Sports-Tracker page</param>
+            <param name="logging">When set to true it will print all webrequest content to the console</param>
+        </member>
+    </members>
+</doc>

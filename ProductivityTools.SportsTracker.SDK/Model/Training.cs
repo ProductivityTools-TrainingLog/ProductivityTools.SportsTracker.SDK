@@ -7,16 +7,44 @@ namespace ProductivityTools.SportsTracker.SDK.Model
 {
     public class Training
     {
+        /// <summary>
+        /// Date and time of the training
+        /// </summary>
         public DateTime StartDate { get; set; }
+        /// <summary>
+        /// Distance of the training in kilometers
+        /// </summary>
         public double Distance { get; set; }
+        /// <summary>
+        /// Training Type
+        /// </summary>
         public TrainingType TrainingType { get; set; }
+
+        /// <summary>
+        /// Duration
+        /// </summary>
         public TimeSpan Duration { get; set; }
 
+        /// <summary>
+        /// Description
+        /// </summary>
         public string Description { get; set; }
+        /// <summary>
+        /// Calories
+        /// </summary>
         public int EnergyConsumption { get; set; }
+        /// <summary>
+        /// Sharing flags, 19 is public
+        /// </summary>
         public int SharingFlags { get; set; }
+        /// <summary>
+        /// SportsTracker Training Key
+        /// </summary>
         public string WorkoutKey { get; set; }
 
+        /// <summary>
+        /// Readonly property which returnes start time in epoch time
+        /// </summary>
         public long StartTime
         {
             get
@@ -27,6 +55,9 @@ namespace ProductivityTools.SportsTracker.SDK.Model
             }
         }
 
+        /// <summary>
+        /// Read only property which gives duration time in seconds
+        /// </summary>
         public int TotalTime
         {
             get
@@ -36,6 +67,9 @@ namespace ProductivityTools.SportsTracker.SDK.Model
             }
         }
 
+        /// <summary>
+        /// Read only property which returns distance in meters
+        /// </summary>
         public int TotalDistance
         {
             get

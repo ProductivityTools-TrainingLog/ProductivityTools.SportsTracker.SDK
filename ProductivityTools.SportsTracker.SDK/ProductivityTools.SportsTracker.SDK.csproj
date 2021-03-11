@@ -12,6 +12,9 @@
     <Authors>ProductivityTools</Authors>
     <Description>Library exposes methods which allow to manage trainings on the https://sports-tracker.com/ website.</Description>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>..\ProductivityTools.SportsTracker.SDK.xml</DocumentationFile>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="..\Images\Nuget\ProductivityTools_blue_85px_1.png">
       <Pack>True</Pack>
@@ -21,5 +24,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Vsxmd" Version="1.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>

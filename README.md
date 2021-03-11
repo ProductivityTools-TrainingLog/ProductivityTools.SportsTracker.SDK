@@ -34,7 +34,7 @@ To use SportsTracker you need to create it with
 ```c#
 var sportsTracker = new SportsTracker(this.Config["login"], this.Config["password"]);
 ```
-
+[AutoDocumentation](ProductivityTools.SportsTracker.SDK.md)
  
  <!--og-image-->
  ![Example](Images/Test.png)
