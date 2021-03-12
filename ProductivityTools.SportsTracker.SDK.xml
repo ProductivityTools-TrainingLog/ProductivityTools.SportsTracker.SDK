@@ -21,7 +21,7 @@
         </member>
         <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.Duration">
             <summary>
-            Duration
+            Duration in TimeSpan
             </summary>
         </member>
         <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.Description">

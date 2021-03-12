@@ -4,6 +4,7 @@ using System.Text;
 
 namespace ProductivityTools.SportsTracker.SDK.Model
 {
+    #pragma warning disable 1591
     public enum TrainingType
     {
         Running = 1,
@@ -18,7 +19,10 @@ namespace ProductivityTools.SportsTracker.SDK.Model
         Treadmill = 53,
         Gym = 23,
         Areobics = 69,
-        Other = 4,
+        Other1 = 4,
+        Other2 = 5,
+        Other3= 6,
+        Other4 = 9,
         Rowing = 15,
         Yoga = 51,
         CrossCountrySkiing = 3,

@@ -21,7 +21,7 @@ namespace ProductivityTools.SportsTracker.SDK.Model
         public TrainingType TrainingType { get; set; }
 
         /// <summary>
-        /// Duration
+        /// Duration in TimeSpan
         /// </summary>
         public TimeSpan Duration { get; set; }
 

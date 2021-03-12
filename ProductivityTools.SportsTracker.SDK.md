@@ -66,7 +66,7 @@ Distance of the training in kilometers
 
 ##### Summary
 
-Duration
+Duration in TimeSpan
 
 <a name='P-ProductivityTools-SportsTracker-SDK-Model-Training-EnergyConsumption'></a>
 ### EnergyConsumption `property`

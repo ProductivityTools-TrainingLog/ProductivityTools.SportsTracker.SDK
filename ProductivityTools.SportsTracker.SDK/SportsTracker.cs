@@ -146,7 +146,7 @@ namespace ProductivityTools.SportsTracker.SDK
             addTraining.totalDistance = training.TotalDistance;
 
 
-            if (gpxFile != null)
+            if (gpxFile != null && gpxFile.Length > 0)
             {
                 string workoutKey = ImportGpxFile(gpxFile);
                 addTraining.workoutKey = workoutKey;
