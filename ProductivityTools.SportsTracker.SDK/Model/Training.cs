@@ -43,6 +43,11 @@ namespace ProductivityTools.SportsTracker.SDK.Model
         public string WorkoutKey { get; set; }
 
         /// <summary>
+        /// Average speed in km/h
+        /// </summary>
+        public decimal AverageSpeed { get; set; }
+
+        /// <summary>
         /// Readonly property which returnes start time in epoch time
         /// </summary>
         public long StartTime
@@ -90,6 +95,7 @@ namespace ProductivityTools.SportsTracker.SDK.Model
             this.Description = payload.description;
             this.Duration = TimeSpan.FromSeconds(payload.totalTime);
             this.WorkoutKey = payload.workoutKey;
+            this.AverageSpeed = Convert.ToDecimal(payload.avgSpeed);
         }
     }
 }

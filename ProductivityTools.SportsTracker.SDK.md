@@ -6,6 +6,7 @@
 - [SportsTracker](#T-ProductivityTools-SportsTracker-SDK-SportsTracker 'ProductivityTools.SportsTracker.SDK.SportsTracker')
   - [#ctor(username,password,logging)](#M-ProductivityTools-SportsTracker-SDK-SportsTracker-#ctor-System-String,System-String,System-Boolean- 'ProductivityTools.SportsTracker.SDK.SportsTracker.#ctor(System.String,System.String,System.Boolean)')
 - [Training](#T-ProductivityTools-SportsTracker-SDK-Model-Training 'ProductivityTools.SportsTracker.SDK.Model.Training')
+  - [AverageSpeed](#P-ProductivityTools-SportsTracker-SDK-Model-Training-AverageSpeed 'ProductivityTools.SportsTracker.SDK.Model.Training.AverageSpeed')
   - [Description](#P-ProductivityTools-SportsTracker-SDK-Model-Training-Description 'ProductivityTools.SportsTracker.SDK.Model.Training.Description')
   - [Distance](#P-ProductivityTools-SportsTracker-SDK-Model-Training-Distance 'ProductivityTools.SportsTracker.SDK.Model.Training.Distance')
   - [Duration](#P-ProductivityTools-SportsTracker-SDK-Model-Training-Duration 'ProductivityTools.SportsTracker.SDK.Model.Training.Duration')
@@ -46,6 +47,13 @@ ProductivityTools.SportsTracker.SDK
 ##### Namespace
 
 ProductivityTools.SportsTracker.SDK.Model
+
+<a name='P-ProductivityTools-SportsTracker-SDK-Model-Training-AverageSpeed'></a>
+### AverageSpeed `property`
+
+##### Summary
+
+Average speed in km/h
 
 <a name='P-ProductivityTools-SportsTracker-SDK-Model-Training-Description'></a>
 ### Description `property`

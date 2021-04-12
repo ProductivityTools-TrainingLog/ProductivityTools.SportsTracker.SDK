@@ -44,6 +44,11 @@
             SportsTracker Training Key
             </summary>
         </member>
+        <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.AverageSpeed">
+            <summary>
+            Average speed in km/h
+            </summary>
+        </member>
         <member name="P:ProductivityTools.SportsTracker.SDK.Model.Training.StartTime">
             <summary>
             Readonly property which returnes start time in epoch time
