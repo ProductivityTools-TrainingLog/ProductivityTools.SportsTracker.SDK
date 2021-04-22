@@ -44,5 +44,6 @@ namespace ProductivityTools.SportsTracker.SDK.Model
         Soccer = 33,
         TrailRunning = 22,
         Surfing = 91,
+        AdventureRacing=80
     }
 }

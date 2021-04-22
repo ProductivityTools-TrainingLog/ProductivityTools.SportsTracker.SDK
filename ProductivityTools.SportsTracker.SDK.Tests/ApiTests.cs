@@ -174,5 +174,13 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             list = this.SportsTracker.GetTrainingList();
             Assert.AreEqual(0, list.Count);
         }
+
+
+        [TestMethod]
+        public void GetTrainingImages()
+        {
+            var list = this.SportsTracker.GetTrainingImages("606d9d5fecf9e6733619e489");
+           
+        }
     }
 }

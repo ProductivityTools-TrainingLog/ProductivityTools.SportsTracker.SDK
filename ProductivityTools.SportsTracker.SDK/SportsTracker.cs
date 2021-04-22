@@ -4,6 +4,9 @@ using ProductivityTools.SportsTracker.SDK.Exceptions;
 using ProductivityTools.SportsTracker.SDK.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -113,6 +116,24 @@ namespace ProductivityTools.SportsTracker.SDK
                 trainings.Add(training);
             }
             return trainings;
+        }
+        
+        public List<TrainingImage> GetTrainingImages(string trainingId)
+        {
+            string resultAsString = Client.GetAsync(GetUri($"images/workout/{trainingId}")).Result.Content.ReadAsStringAsync().Result;
+            var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.SDK.DTO.Images.Rootobject>(resultAsString);
+
+            List<TrainingImage> result = new List<TrainingImage>();
+            WebClient client = new WebClient();
+            foreach (var sttraining in jobject.payload)
+            {
+                string imageKey = sttraining.key;
+                Stream stream = client.OpenRead($"https://api.sports-tracker.com/apiserver/v1/image/scale/{imageKey}/?width=2000&height=2000&fit=true");
+                client.DownloadFile(new Uri($"https://api.sports-tracker.com/apiserver/v1/image/scale/{imageKey}/?width=2000&height=2000&fit=true"), $"d:\\trash\\{imageKey}.png");
+                TrainingImage trainingImage = new TrainingImage(trainingId, imageKey, stream);
+                result.Add(trainingImage);
+            }
+            return result;
         }
 
         public string AddTraining(Training training)
