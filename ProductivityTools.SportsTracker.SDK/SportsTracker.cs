@@ -105,19 +105,27 @@ namespace ProductivityTools.SportsTracker.SDK
             return sessionKey;
         }
 
-        public List<Training> GetTrainingList()
+        public List<Training> GetTrainingList(DateTime? fromDate = null)
         {
             var trainings = new List<Training>();
             string resultAsString = Client.GetAsync(GetUri("workouts?limited=true&limit=1000000")).Result.Content.ReadAsStringAsync().Result;
             var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.SDK.DTO.TrainingList.Rootobject>(resultAsString);
             foreach (var sttraining in jobject.payload)
             {
+
                 var training = new Training(sttraining);
-                trainings.Add(training);
+                if (fromDate != null && fromDate < training.StartDate)
+                {
+                    trainings.Add(training);
+                }
+                else
+                {
+                    break;
+                }
             }
             return trainings;
         }
-        
+
         public List<TrainingImage> GetTrainingImages(string trainingId)
         {
             string resultAsString = Client.GetAsync(GetUri($"images/workout/{trainingId}")).Result.Content.ReadAsStringAsync().Result;
