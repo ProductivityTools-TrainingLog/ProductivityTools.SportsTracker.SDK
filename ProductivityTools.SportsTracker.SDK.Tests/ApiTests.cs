@@ -182,5 +182,12 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             var list = this.SportsTracker.GetTrainingImages("606d9d5fecf9e6733619e489");
            
         }
+
+        [TestMethod]
+        public void GetGpx()
+        {
+            this.SportsTracker.GetGpx("60828ac69da1bb132015ef62");
+
+        }
     }
 }

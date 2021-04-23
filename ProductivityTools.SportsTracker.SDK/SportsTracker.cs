@@ -44,14 +44,26 @@ namespace ProductivityTools.SportsTracker.SDK
             }
         }
 
+        string sessionKey;
+        string SessionKey
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(sessionKey))
+                {
+                    sessionKey = Login(this.UserName, this.Password);
+                }
+                return sessionKey;
+            }
+        }
+
         HttpClient Client
         {
             get
             {
                 if (AnonymousClient.DefaultRequestHeaders.Contains("STTAuthorization") == false)
                 {
-                    string sessionKey = Login(this.UserName, this.Password);
-                    client.DefaultRequestHeaders.Add("STTAuthorization", sessionKey);
+                    client.DefaultRequestHeaders.Add("STTAuthorization", this.SessionKey);
                 }
 
                 return AnonymousClient;
@@ -118,11 +130,11 @@ namespace ProductivityTools.SportsTracker.SDK
                 {
                     trainings.Add(training);
                 }
-                if (fromDate==null)
+                if (fromDate == null)
                 {
                     trainings.Add(training);
                 }
-           
+
             }
             return trainings;
         }
@@ -137,12 +149,23 @@ namespace ProductivityTools.SportsTracker.SDK
             foreach (var sttraining in jobject.payload)
             {
                 string imageKey = sttraining.key;
-                Stream stream = client.OpenRead($"https://api.sports-tracker.com/apiserver/v1/image/scale/{imageKey}/?width=2000&height=2000&fit=true");
-                client.DownloadFile(new Uri($"https://api.sports-tracker.com/apiserver/v1/image/scale/{imageKey}/?width=2000&height=2000&fit=true"), $"d:\\trash\\{imageKey}.png");
+                string url = $"{Address}image/scale/{imageKey}/?width=2000&height=2000&fit=true";
+                Stream stream = client.OpenRead(url);
+                //client.DownloadFile(new Uri(url), $"d:\\trash\\{imageKey}.png");
                 TrainingImage trainingImage = new TrainingImage(trainingId, imageKey, stream);
                 result.Add(trainingImage);
             }
             return result;
+        }
+
+        public Stream GetGpx(string trainingId)
+        {
+            WebClient client = new WebClient();
+
+            string url = $"{Address}workout/exportGpx/{trainingId}?token={this.SessionKey}";
+            Stream stream = client.OpenRead(url);
+            //client.DownloadFile(new Uri(url), $"d:\\trash\\{trainingId}.gpx");
+            return stream;
         }
 
         public string AddTraining(Training training)
