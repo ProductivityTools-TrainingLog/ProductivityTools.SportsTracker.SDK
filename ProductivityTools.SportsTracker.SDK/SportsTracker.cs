@@ -158,11 +158,11 @@ namespace ProductivityTools.SportsTracker.SDK
             return result;
         }
 
-        public Stream GetGpx(string trainingId)
+        public Stream GetGpx(string workoutId)
         {
             WebClient client = new WebClient();
 
-            string url = $"{Address}workout/exportGpx/{trainingId}?token={this.SessionKey}";
+            string url = $"{Address}workout/exportGpx/{workoutId}?token={this.SessionKey}";
             Stream stream = client.OpenRead(url);
             //client.DownloadFile(new Uri(url), $"d:\\trash\\{trainingId}.gpx");
             return stream;
