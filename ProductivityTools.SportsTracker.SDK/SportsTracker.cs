@@ -33,6 +33,7 @@ namespace ProductivityTools.SportsTracker.SDK
                     }
                     else
                     {
+                        
                         client = new HttpClient();
                     }
 
@@ -91,7 +92,6 @@ namespace ProductivityTools.SportsTracker.SDK
 
         public string Login(string login, string password)
         {
-
             var formContent = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("l", login),
