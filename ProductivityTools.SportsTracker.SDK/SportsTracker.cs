@@ -118,10 +118,11 @@ namespace ProductivityTools.SportsTracker.SDK
                 {
                     trainings.Add(training);
                 }
-                else
+                if (fromDate==null)
                 {
-                    break;
+                    trainings.Add(training);
                 }
+           
             }
             return trainings;
         }
