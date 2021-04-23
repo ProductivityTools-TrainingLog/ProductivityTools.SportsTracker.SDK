@@ -248,6 +248,10 @@ namespace ProductivityTools.SportsTracker.SDK
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
             string resultAsString = this.Client.PostAsync(GetUri("workout/importGpx"), form).Result.Content.ReadAsStringAsync().Result;
             var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.SDK.DTO.ImportGpx.Rootobject>(resultAsString);
+            if(jobject.error!=null)
+            {
+                throw new Exception(jobject.error.ToString());
+            }
             return jobject.payload.workoutKey;
             this.Client.DeleteAsync(GetUri($"workouts/{jobject.payload.workoutKey}/delete"));
         }
