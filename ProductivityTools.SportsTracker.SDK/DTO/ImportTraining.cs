@@ -8,7 +8,8 @@ namespace ProductivityTools.SportsTracker.SDK.DTO.ImportTraining
     {
         public int activityId { get; set; }
         public string description { get; set; }
-        public int energyConsumption { get; set; }
+        //public int energyConsumption { get; set; } //in adding https://api.sports-tracker.com/apiserver/v1/workout 
+        public int energy { get; set; }
         public int sharingFlags { get; set; }
         public long startTime { get; set; }
         public int totalDistance { get; set; }

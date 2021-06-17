@@ -193,7 +193,7 @@ namespace ProductivityTools.SportsTracker.SDK
             var addTraining = new ProductivityTools.SportsTracker.SDK.DTO.ImportTraining.Training();
             addTraining.activityId = (int)training.TrainingType;
             addTraining.description = training.Description;
-            addTraining.energyConsumption = training.EnergyConsumption;
+            addTraining.energy = training.EnergyConsumption;
             addTraining.sharingFlags = training.SharingFlags;
             addTraining.startTime = training.StartTime;
             addTraining.totalDistance = training.TotalDistance;
@@ -233,6 +233,15 @@ namespace ProductivityTools.SportsTracker.SDK
                 }
             }
             return result;
+        }
+
+        public string PostTrainingTest(string dataAsString)
+        {
+            var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
+            var stringresult = this.Client.PostAsync(GetUri("workout"), content).Result.Content.ReadAsStringAsync().Result;
+            var o = JObject.Parse(stringresult);
+            var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.SDK.DTO.ImportGpx.Rootobject>(stringresult);
+            return jobject.payload.workoutKey;
         }
 
         public string ImportGpxFile(byte[] content)

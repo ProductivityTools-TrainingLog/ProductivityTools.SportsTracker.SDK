@@ -169,7 +169,7 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             foreach (var training in list)
             {
                 this.SportsTracker.DeleteTraining(training.WorkoutKey);
-            }
+            } 
             Thread.Sleep(1000);
             list = this.SportsTracker.GetTrainingList();
             Assert.AreEqual(0, list.Count);
@@ -188,6 +188,15 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
         {
             this.SportsTracker.GetGpx("60828ac69da1bb132015ef62");
 
+        }
+
+        [TestMethod]
+        public void ManualPostTraining()
+        {
+            this.SportsTracker.PostTrainingTest("{\"activityId\":11,\"description\":\"\",\"energy\":211,\"sharingFlags\":19,\"startTime\":1296374400000,\"totalDistance\":0,\"duration\":1800}");
+            this.SportsTracker.PostTrainingTest("{\"activityId\":11,\"description\":\" \",\"energy\":211,\"sharingFlags\":19,\"startTime\":1296374410000,\"totalDistance\":0,\"duration\":1800}");
+            this.SportsTracker.PostTrainingTest("{\"activityId\":11,\"description\":\" \",\"energy\":211,\"sharingFlags\":19,\"startTime\":1296374400000,\"totalDistance\":0,\"duration\":1800}");
+            //this.SportsTracker.PostTrainingTest("{\"activityId\":11,\"description\":\" \",\"energy\":211,\"sharingFlags\":19,\"startTime\":1296374411111,\"totalDistance\":0,\"duration\":1800}");
         }
     }
 }
