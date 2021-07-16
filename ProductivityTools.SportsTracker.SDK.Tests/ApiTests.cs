@@ -1,13 +1,11 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProductivityTools.MasterConfiguration;
-using ProductivityTools.SportsTracker.SDK.Exceptions;
 using ProductivityTools.SportsTracker.SDK.Model;
 using System;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Threading;
 
 namespace ProductivityTools.SportsTracker.SDK.Tests
 {
@@ -23,8 +21,7 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
                 if (config == null)
                 {
                     config = new ConfigurationBuilder()
-                               //.AddJsonFile("client-secrets.json")
-                               .AddMasterConfiguration(force:true)
+                               .AddMasterConfiguration()
                                .Build();
                 }
                 return config;
@@ -43,14 +40,6 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
                 return sportsTracker;
             }
 
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ForbiddenException))]
-        public void WrongCredentials()
-        {
-            var app = new SportsTracker("wrong", "wrong");
-            app.GetTrainingList();
         }
 
         [TestMethod]
@@ -106,54 +95,22 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             Training training = new Training();
             training.TrainingType = TrainingType.Areobics;
             training.SharingFlags = 19;//public
-            training.Description = "Description";
-            training.Duration = TimeSpan.FromMinutes(20);
-            training.StartDate = DateTime.Parse("2021.01.03");
-            training.Distance = 10;
+            //training.Description = "Description";
+            //training.Duration = TimeSpan.FromMinutes(20);
+            //training.StartDate = DateTime.Parse("2021.01.03");
+            //training.Distance = 0;
 
             string s = @"Blob\Track.gpx";
             byte[] trainingTrack = File.ReadAllBytes(s);
+
 
             var r = this.SportsTracker.AddTraining(training, trainingTrack);
             var list = this.SportsTracker.GetTrainingList();
-            var serverTraining = list.First(x => x.WorkoutKey == r);
-            Assert.AreEqual(serverTraining.Description, "Description");
-            Assert.AreEqual(serverTraining.StartDate, DateTime.Parse("2021.01.03"));
-            Assert.AreEqual(serverTraining.Distance, 10);
-            Assert.AreEqual(serverTraining.Duration, TimeSpan.FromMinutes(20));
-        }
-
-
-        [TestMethod]
-        public void AddTrainingWithGpxTrackAndImage()
-        {
-            Training training = new Training();
-            training.TrainingType = TrainingType.Areobics;
-            training.SharingFlags = 19;//public
-            training.Description = "Description";
-            training.Duration = TimeSpan.FromMinutes(20);
-            training.StartDate = DateTime.Parse("2021.01.03");
-            training.Distance = 10;
-
-            string s = @"Blob\Track.gpx";
-            byte[] trainingTrack = File.ReadAllBytes(s);
-
-            string image = @"Blob\Pamela.jpg";
-            byte[] bytes = File.ReadAllBytes(image);
-
-            var r = this.SportsTracker.AddTraining(training, trainingTrack, new System.Collections.Generic.List<byte[]> { bytes });
-            var list = this.SportsTracker.GetTrainingList();
-            var serverTraining = list.First(x => x.WorkoutKey == r);
-            Assert.AreEqual(serverTraining.Description, "Description");
-            Assert.AreEqual(serverTraining.StartDate, DateTime.Parse("2021.01.03"));
-            Assert.AreEqual(serverTraining.Distance, 10);
-            Assert.AreEqual(serverTraining.Duration, TimeSpan.FromMinutes(20));
         }
 
         [TestMethod]
         public void DeleteTraining()
         {
-            AddTraining();
             var list = this.SportsTracker.GetTrainingList();
             var count1 = list.Count;
             this.SportsTracker.DeleteTraining(list[0].WorkoutKey);
@@ -169,34 +126,10 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             foreach (var training in list)
             {
                 this.SportsTracker.DeleteTraining(training.WorkoutKey);
-            } 
-            Thread.Sleep(1000);
+            }
             list = this.SportsTracker.GetTrainingList();
             Assert.AreEqual(0, list.Count);
         }
 
-
-        [TestMethod]
-        public void GetTrainingImages()
-        {
-            var list = this.SportsTracker.GetTrainingImages("606d9d5fecf9e6733619e489");
-           
-        }
-
-        [TestMethod]
-        public void GetGpx()
-        {
-            this.SportsTracker.GetGpx("60828ac69da1bb132015ef62");
-
-        }
-
-        [TestMethod]
-        public void ManualPostTraining()
-        {
-            this.SportsTracker.PostTrainingTest("{\"activityId\":11,\"description\":\"\",\"energy\":211,\"sharingFlags\":19,\"startTime\":1296374400000,\"totalDistance\":0,\"duration\":1800}");
-            this.SportsTracker.PostTrainingTest("{\"activityId\":11,\"description\":\" \",\"energy\":211,\"sharingFlags\":19,\"startTime\":1296374410000,\"totalDistance\":0,\"duration\":1800}");
-            this.SportsTracker.PostTrainingTest("{\"activityId\":11,\"description\":\" \",\"energy\":211,\"sharingFlags\":19,\"startTime\":1296374400000,\"totalDistance\":0,\"duration\":1800}");
-            //this.SportsTracker.PostTrainingTest("{\"activityId\":11,\"description\":\" \",\"energy\":211,\"sharingFlags\":19,\"startTime\":1296374411111,\"totalDistance\":0,\"duration\":1800}");
-        }
     }
 }

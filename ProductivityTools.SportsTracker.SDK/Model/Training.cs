@@ -95,7 +95,8 @@ namespace ProductivityTools.SportsTracker.SDK.Model
             this.Description = payload.description;
             this.Duration = TimeSpan.FromSeconds(payload.totalTime);
             this.WorkoutKey = payload.workoutKey;
-            this.AverageSpeed = Convert.ToDecimal(payload.avgSpeed);
+            this.AverageSpeed = Convert.ToDecimal(payload.avgSpeed)*3.6m;
+            this.EnergyConsumption = payload.energyConsumption;
         }
     }
 }
