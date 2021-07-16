@@ -193,7 +193,7 @@ namespace ProductivityTools.SportsTracker.SDK
             var addTraining = new ProductivityTools.SportsTracker.SDK.DTO.ImportTraining.Training();
             addTraining.activityId = (int)training.TrainingType;
             addTraining.description = training.Description;
-            addTraining.energy = training.EnergyConsumption;
+            addTraining.energyConsumption = training.EnergyConsumption;
             addTraining.sharingFlags = training.SharingFlags;
             addTraining.startTime = training.StartTime;
             addTraining.totalDistance = training.TotalDistance;
@@ -279,22 +279,22 @@ namespace ProductivityTools.SportsTracker.SDK
             return resultAsString;
         }
 
-        public void AddTraining(TrainingType trainingType, string description, int duration, DateTime startTime)
-        {
-            var newTraining = new ProductivityTools.SportsTracker.SDK.DTO.NewTraining.Rootobject();
-            newTraining.activityId = (int)trainingType;
-            newTraining.description = description;
-            newTraining.duration = duration;
-            newTraining.energy = 0;
-            newTraining.sharingFlags = (int)SharingType.Public;
-            newTraining.timeZoneOffset = 0;
-            newTraining.totalDistance = 0;
-            newTraining.startTime = ConvertToUnixTimestamp(startTime) * 1000;
-            var dataAsString = JsonConvert.SerializeObject(newTraining);
-            var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
+        //public void AddTraining(TrainingType trainingType, string description, int duration, DateTime startTime)
+        //{
+        //    var newTraining = new ProductivityTools.SportsTracker.SDK.DTO.NewTraining.Rootobject();
+        //    newTraining.activityId = (int)trainingType;
+        //    newTraining.description = description;
+        //    newTraining.duration = duration;
+        //    newTraining.energy = 
+        //    newTraining.sharingFlags = (int)SharingType.Public;
+        //    newTraining.timeZoneOffset = 0;
+        //    newTraining.totalDistance = 0;
+        //    newTraining.startTime = ConvertToUnixTimestamp(startTime) * 1000;
+        //    var dataAsString = JsonConvert.SerializeObject(newTraining);
+        //    var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
 
-            var result = this.Client.PostAsync(GetUri("workout").ToString(), content).Result.Content.ReadAsStringAsync().Result;
-        }
+        //    var result = this.Client.PostAsync(GetUri("workout").ToString(), content).Result.Content.ReadAsStringAsync().Result;
+        //}
 
         public void DeleteTraining(string workoutKey)
         {
