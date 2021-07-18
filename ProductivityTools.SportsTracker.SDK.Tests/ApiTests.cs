@@ -99,10 +99,13 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
         [TestMethod]
         public void AddTrainingWithGpxTrack()
         {
+            string description = "Description" + DateTime.Now.ToString();
+
             Training training = new Training();
             training.TrainingType = TrainingType.Areobics;
             training.SharingFlags = 19;//public
-            //training.Description = "Description";
+            training.EnergyConsumption = 97;
+            training.Description = description;
             //training.Duration = TimeSpan.FromMinutes(20);
             //training.StartDate = DateTime.Parse("2021.01.03");
             //training.Distance = 0;
@@ -113,6 +116,10 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
 
             var r = this.SportsTracker.AddTraining(training, trainingTrack);
             var list = this.SportsTracker.GetTrainingList();
+
+            var element = list.FirstOrDefault(x => x.Description == description);
+            Assert.AreEqual(97, element.EnergyConsumption);
+
         }
 
         //[TestMethod]
