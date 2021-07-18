@@ -108,28 +108,28 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
             var list = this.SportsTracker.GetTrainingList();
         }
 
-        [TestMethod]
-        public void DeleteTraining()
-        {
-            var list = this.SportsTracker.GetTrainingList();
-            var count1 = list.Count;
-            this.SportsTracker.DeleteTraining(list[0].WorkoutKey);
-            list = this.SportsTracker.GetTrainingList();
-            var count2 = list.Count;
-            Assert.AreEqual(count1, count2 + 1);
-        }
+        //[TestMethod]
+        //public void DeleteTraining()
+        //{
+        //    var list = this.SportsTracker.GetTrainingList();
+        //    var count1 = list.Count;
+        //    this.SportsTracker.DeleteTraining(list[0].WorkoutKey);
+        //    list = this.SportsTracker.GetTrainingList();
+        //    var count2 = list.Count;
+        //    Assert.AreEqual(count1, count2 + 1);
+        //}
 
-        [TestMethod]
-        public void DeleteAllTrainings()
-        {
-            var list = this.SportsTracker.GetTrainingList();
-            foreach (var training in list)
-            {
-                this.SportsTracker.DeleteTraining(training.WorkoutKey);
-            }
-            list = this.SportsTracker.GetTrainingList();
-            Assert.AreEqual(0, list.Count);
-        }
+        //[TestMethod]
+        //public void DeleteAllTrainings()
+        //{
+        //    var list = this.SportsTracker.GetTrainingList();
+        //    foreach (var training in list)
+        //    {
+        //        this.SportsTracker.DeleteTraining(training.WorkoutKey);
+        //    }
+        //    list = this.SportsTracker.GetTrainingList();
+        //    Assert.AreEqual(0, list.Count);
+        //}
 
     }
 }
