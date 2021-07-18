@@ -98,6 +98,7 @@ namespace ProductivityTools.SportsTracker.SDK.Model
             this.WorkoutKey = payload.workoutKey;
             this.AverageSpeed = Convert.ToDecimal(payload.avgSpeed) * 3.6m;
             this.EnergyConsumption = payload.energyConsumption;
+            this.EnergyConsumption = payload.energyConsumption;
         }
     }
 }

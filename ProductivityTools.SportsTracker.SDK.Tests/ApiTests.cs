@@ -6,6 +6,7 @@ using System;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 namespace ProductivityTools.SportsTracker.SDK.Tests
 {
@@ -52,22 +53,28 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
         [TestMethod]
         public void AddTraining()
         {
+            var date = DateTime.Now;
+            date = date.AddSeconds(-date.Second);
             Training training = new Training();
             training.TrainingType = TrainingType.Fitness;
             training.SharingFlags = 19;//public
             string description = "Description" + DateTime.Now.ToString();
             training.Description = description;
             training.Duration = TimeSpan.FromMinutes(20);
-            training.StartDate = DateTime.Parse("2021.01.01");
+            training.StartDate = date;
             training.Distance = 10;
+            training.EnergyConsumption = 97;
 
             var r = this.SportsTracker.AddTraining(training);
+            Thread.Sleep(1000);
             var list = this.SportsTracker.GetTrainingList();
             var element = list.FirstOrDefault(x => x.Description == description);
             Assert.AreEqual(element.Duration.Minutes, 20);
-            Assert.AreEqual(element.StartDate, DateTime.Parse("2021.01.01"));
+          
+            Assert.AreEqual(date.Date, element.StartDate.Date);
             Assert.AreEqual(element.Distance, 10);
             Assert.AreEqual(element.TrainingType, TrainingType.Fitness);
+            Assert.AreEqual(97, element.EnergyConsumption);
         }
 
         [TestMethod]
@@ -127,6 +134,7 @@ namespace ProductivityTools.SportsTracker.SDK.Tests
         //    {
         //        this.SportsTracker.DeleteTraining(training.WorkoutKey);
         //    }
+        //    Thread.Sleep(2000);
         //    list = this.SportsTracker.GetTrainingList();
         //    Assert.AreEqual(0, list.Count);
         //}
