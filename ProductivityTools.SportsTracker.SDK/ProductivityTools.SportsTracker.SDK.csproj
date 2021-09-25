@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.0.28</Version>
+    <Version>0.0.29</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/pwujczyk/ProductivityTools.SportsTracker.SDK</PackageProjectUrl>
     <PackageIcon>ProductivityTools_blue_85px_1.png</PackageIcon>
