@@ -94,11 +94,13 @@ namespace ProductivityTools.SportsTracker.SDK
         {
             var formContent = new FormUrlEncodedContent(new[]
             {
-                new KeyValuePair<string, string>("l", login),
-                new KeyValuePair<string, string>("p", password)
+                new KeyValuePair<string, string>("l", "pwujczyk@hotmail.com"),
+                new KeyValuePair<string, string>("p", "Pitbull1!"),
+                new KeyValuePair<string, string>("captchaToken", "03AIIukzgs8UYQM173eR1qhtBxMiVN9HN8GsfVgy3-ueRI3nYNlaKEHOUpWTafmJN5qPh183svHFcrtyrx-oN3rTAD4yJnI02p1SoVWs2GmuDBkNf09NViIhecDqiXViLAyCZQxjaKgchZkk-iFiL_B1cNfpmtymYoYsNGpg3X8x7YDhExhnRgodFanCZ0357VZ9ojEBdXAJGYhPTvavpfJZW8GHUyeciO7i7O57I_Kj9AQRoctWgD68Go0RKBq5nYIiuCXovlMGsc15OS6rAj4Dqau5V3gFotDr_jWGePIE2c_M-hHjSs2tSSIHpOsJkaXnBX69801dYAGIOhzUUL3Ei98GvsL2UZbZ8dEZoYvuEPEo4jnbjNNIWfpEmnKfB9bFq12nAx-NtW0mAnp7YU340Mmy5MR_OjA57FKQYzK2fcYa3CO85bOQSjeoJ5YXvD5DZ5R1cYEO6tBa-Gna5fZNEJJfSD_Lr2xPLeL_tNnhvmYo2nPVtAx4l2X7CN7jjnkeXT03qiO2uACBYhPRDk09R106_PBKzNe")
+
             });
 
-            var anonymous = new { l = login, p = password };
+            var anonymous = new { l = login, p = password, captchaToken= "03AIIukzgs8UYQM173eR1qhtBxMiVN9HN8GsfVgy3-ueRI3nYNlaKEHOUpWTafmJN5qPh183svHFcrtyrx-oN3rTAD4yJnI02p1SoVWs2GmuDBkNf09NViIhecDqiXViLAyCZQxjaKgchZkk-iFiL_B1cNfpmtymYoYsNGpg3X8x7YDhExhnRgodFanCZ0357VZ9ojEBdXAJGYhPTvavpfJZW8GHUyeciO7i7O57I_Kj9AQRoctWgD68Go0RKBq5nYIiuCXovlMGsc15OS6rAj4Dqau5V3gFotDr_jWGePIE2c_M-hHjSs2tSSIHpOsJkaXnBX69801dYAGIOhzUUL3Ei98GvsL2UZbZ8dEZoYvuEPEo4jnbjNNIWfpEmnKfB9bFq12nAx-NtW0mAnp7YU340Mmy5MR_OjA57FKQYzK2fcYa3CO85bOQSjeoJ5YXvD5DZ5R1cYEO6tBa-Gna5fZNEJJfSD_Lr2xPLeL_tNnhvmYo2nPVtAx4l2X7CN7jjnkeXT03qiO2uACBYhPRDk09R106_PBKzNeA"};
             var dataAsString = JsonConvert.SerializeObject(anonymous);
             var content = new StringContent(dataAsString, Encoding.UTF8, "application/x-www-form-urlencoded");
 
